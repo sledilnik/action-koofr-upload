@@ -15,17 +15,27 @@ const remotePath = core.getInput('remotePath');
 const client = new Koofr(baseUrl);
 
 async function uploadFile(mountId, pth, name, data) {
-    console.log("Uploading to", mountId, pth, name);
-    await client.authenticate(username, password);
-    const ret = await client.filesPut(mountId, pth, name, data);
-    core.setOutput("name", ret.name);
+    try {
+        console.log("Uploading to", mountId, pth, name);
+        await client.authenticate(username, password);
+    } catch (ex) {
+        throw new Error(`Authentication failed: ${ex.statusCode} ${ex.statusMessage}`);
+    }
+
+    try {
+        const ret = await client.filesPut(mountId, pth, name, data);
+        core.setOutput("name", ret.name);
+    } catch (ex) {
+        throw new Error(`Upload failed: ${ex.statusCode} ${ex.statusMessage}`);
+    }
+
 }
 
 async function main() {
     try {
         const fileName = path.basename(localPath);
         const file = fs.readFileSync(localPath);
-        uploadFile(mountId, remotePath, fileName, file);
+        await uploadFile(mountId, remotePath, fileName, file);
     } catch (error) {
         core.setFailed(error.message);
     }
