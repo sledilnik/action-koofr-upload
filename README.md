@@ -37,11 +37,11 @@ Name of uploaded file
 ## Example usage
 
 ```
-- name: Upload test file
-uses: sledilnik/action-koofr-upload@v1
-with:
-    username: info@sledilnik.org
-    appPassword: ${{ secrets.KOOFR_PASS }}
-    remotePath: /action-koofr-upload
-    localPath: testfiles/test.txt
+  - name: Upload test file
+    uses: sledilnik/action-koofr-upload@v1
+    with:
+        username: info@sledilnik.org
+        appPassword: ${{ secrets.KOOFR_PASS }}
+        remotePath: /action-koofr-upload
+        localPath: testfiles/test.txt
 ```
