@@ -24,7 +24,9 @@ Mount ID to upload. Defaults to `primary` which should be OK for most cases.
 
 Remote path (path on Koofr) where to put artefact
 
+### `localPath`
 
+Local path of artefact to upload
 
 ## Outputs
 
