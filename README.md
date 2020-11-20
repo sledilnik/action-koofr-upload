@@ -36,7 +36,7 @@ Name of uploaded file
 
 ```
 - name: Upload test file
-uses: sledilnik/action-koofr-upload@master
+uses: sledilnik/action-koofr-upload@v1
 with:
     username: info@sledilnik.org
     appPassword: ${{ secrets.KOOFR_PASS }}
