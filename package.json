@@ -10,7 +10,10 @@
     "@actions/core": "^1.2.6",
     "@actions/github": "^4.0.0",
     "@actions/glob": "^0.1.1",
-    "koofr": "^0.2.0",
+    "koofr": "^0.2.0"
+
+  },
+  "devDependencies": {
     "webpack": "^5.6.0",
     "webpack-cli": "^4.2.0"
   }
