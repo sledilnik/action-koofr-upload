@@ -3,6 +3,7 @@ const github = require('@actions/github');
 const fs = require('fs');
 const Koofr = require('koofr');
 const path = require('path');
+const glob = require('@actions/glob');
 
 // action variables
 const baseUrl = core.getInput('baseUrl');
@@ -28,14 +29,18 @@ async function uploadFile(mountId, pth, name, data) {
     } catch (ex) {
         throw new Error(`Upload failed: ${ex.statusCode} ${ex.statusMessage}`);
     }
-
 }
 
 async function main() {
     try {
-        const fileName = path.basename(localPath);
-        const file = fs.readFileSync(localPath);
-        await uploadFile(mountId, remotePath, fileName, file);
+        const globber = await glob.create(localPath)
+        const files = await globber.glob()
+
+        files.forEach(async function (filePath) {
+            const fileName = path.basename(filePath);
+            const file = fs.readFileSync(filePath);
+            await uploadFile(mountId, remotePath, fileName, file);
+        })
     } catch (error) {
         core.setFailed(error.message);
     }

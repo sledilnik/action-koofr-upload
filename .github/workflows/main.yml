@@ -27,3 +27,11 @@ jobs:
           appPassword: ${{ secrets.KOOFR_PASS }}
           remotePath: /action-koofr-upload
           localPath: testfiles/test.txt
+
+      - name: Upload test file (glob)
+        uses: sledilnik/action-koofr-upload@master
+        with:
+          username: info@sledilnik.org
+          appPassword: ${{ secrets.KOOFR_PASS }}
+          remotePath: /action-koofr-upload
+          localPath: testfiles/*.txt
