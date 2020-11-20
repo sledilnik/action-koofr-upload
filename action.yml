@@ -1,0 +1,26 @@
+name: 'Koofr upload'
+description: 'Greet someone and record the time'
+inputs:
+  baseUrl:
+    description: "Base URL of Koofr"
+    required: false
+    default: "https://app.koofr.net"
+  username:
+    description: "Username"
+    required: true
+  appPassword:
+    description: "App password"
+    required: true
+  mountId:
+    description: 'Where to put file'
+    required: false
+    default: 'primary'
+  remotePath:
+    description: 'Path on which to upload file'
+    required: true
+  localPath:
+    description: 'Path to file to upload'
+    required: true
+runs:
+  using: 'node12'
+  main: 'dist/index.js'
